@@ -16,14 +16,4 @@ html {
   .center-content {
     @apply flex justify-between;
   }
-
-  .common-padding {
-    margin: 0vw 21vw 0 19vw;
-  }
-
-  @media only screen and (max-width: 768px) {
-    .common-padding {
-      margin: 0vw 10vw 0 10vw;
-    }
-  }
 }
