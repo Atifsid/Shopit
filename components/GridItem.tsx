@@ -21,7 +21,10 @@ const GridItem = (props: Product) => {
           objectFit="cover"
           className="aspect-square w-full p-5"
         />
-        <button onClick={() => dispatch(addProductToCart({ ...props }))} className="bg-primary p-2 rounded-full absolute top-3 right-3">
+        <button
+          onClick={() => dispatch(addProductToCart({ ...props }))}
+          className="bg-primary p-2 rounded-full absolute top-3 right-3"
+        >
           <FaCartPlus className="text-lg text-white" />
         </button>
       </div>
