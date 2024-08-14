@@ -18,5 +18,5 @@ export interface CartProduct {
   title?: string;
   price?: number;
   image?: string;
-  quanity?: number
+  quantity?: number
 }

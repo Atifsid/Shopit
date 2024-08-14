@@ -1,9 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Product } from "@/types";
 import { FaCartPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "@/app/lib/features/cart/cartSlice";
 
 const GridItem = (props: Product) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="m-5 card max-w-sm">
       <div className="relative">
@@ -15,7 +21,7 @@ const GridItem = (props: Product) => {
           objectFit="cover"
           className="aspect-square w-full p-5"
         />
-        <button className="bg-primary p-2 rounded-full absolute top-3 right-3">
+        <button onClick={() => dispatch(addProductToCart({ ...props }))} className="bg-primary p-2 rounded-full absolute top-3 right-3">
           <FaCartPlus className="text-lg text-white" />
         </button>
       </div>

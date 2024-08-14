@@ -1,7 +1,12 @@
+"use client";
+import { RootState } from "@/app/lib/store";
 import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const count = useSelector((state: RootState) => state.cart.cartSize);
+
   return (
     <header className="flex flex-row items-center justify-between sm:justify-around py-1 bg-primary px-10">
       <Link href={"/"} className="cursor-pointer">
@@ -14,7 +19,7 @@ const Header = () => {
         <FaShoppingCart className="text-white text-2xl" />
         <span className="absolute inset-0 object-right-top -mr-6">
           <div className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-semibold bg-red-500 text-white">
-            0
+            {count}
           </div>
         </span>
       </Link>
