@@ -5,7 +5,7 @@ import { FaCartPlus } from "react-icons/fa";
 
 const GridItem = (props: Product) => {
   return (
-    <div className="max-w-sm rounded-md overflow-hidden shadow-lg bg-white m-5">
+    <div className="m-5 card max-w-sm">
       <div className="relative">
         <Image
           src={props.image!}

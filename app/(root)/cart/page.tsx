@@ -1,3 +1,5 @@
+import CartItem from '@/components/CartItem';
+import Divider from '@/components/Divider';
 import React from 'react'
 
 const Cart = () => {
@@ -16,7 +18,24 @@ const Cart = () => {
     };
     return (
         <section className='flex justify-center'>
-            <div>Cart</div>
+            <div className='flex-col my-3'>
+                {[1, 2].map(_ => <CartItem {...product} />)}
+                <div className='m-5 bg-white shadow px-3 py-2'>
+                    <div className='center'>
+                        <span className='text-base'>{`Subtotal (1 item) :`}</span>
+                        <span className='text-lg font-bold'>{`$ 100`}</span>
+                    </div>
+                    <div className='center'>
+                        <span className='text-base'>{`Discount 10% :`}</span>
+                        <span className='text-lg font-bold text-red-500'>{`- $ 100`}</span>
+                    </div>
+                    <Divider />
+                    <div className='center'>
+                        <span className='text-base font-bold'>{`Total :`}</span>
+                        <span className='text-lg font-bold'>{`$ 100`}</span>
+                    </div>
+                </div>
+            </div>
         </section>
     )
 }
