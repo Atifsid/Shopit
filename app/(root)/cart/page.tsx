@@ -4,7 +4,10 @@ import { RootState } from "@/app/lib/store";
 import CartItem from "@/components/CartItem";
 import Divider from "@/components/Divider";
 import EmptyCart from "@/components/EmptyCart";
-import { roundOffToDecimalPlaces } from "@/utils/functions";
+import {
+  calculatePercentage,
+  roundOffToDecimalPlaces,
+} from "@/utils/functions";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -25,13 +28,22 @@ const Cart = () => {
           </div>
           <div className="center">
             <span className="text-base">{`Discount 10% :`}</span>
-            <span className="text-lg font-bold text-red-500">{`- $ 100`}</span>
+            <span className="text-lg font-bold text-red-500">{`- $ ${
+              cartState.totalPrice > 0
+                ? roundOffToDecimalPlaces(
+                    calculatePercentage(cartState.totalPrice)
+                  )
+                : "0"
+            }`}</span>
           </div>
           <Divider />
           <div className="center">
             <span className="text-base font-bold">{`Total :`}</span>
             <span className="text-lg font-bold">{`$ ${roundOffToDecimalPlaces(
-              cartState.totalPrice
+              cartState.totalPrice -
+                roundOffToDecimalPlaces(
+                  calculatePercentage(cartState.totalPrice)
+                )
             )}`}</span>
           </div>
         </div>

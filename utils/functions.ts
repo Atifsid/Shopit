@@ -14,3 +14,10 @@ export const roundOffToDecimalPlaces = (
 ): number => {
   return Number(value.toFixed(decimalPlace));
 };
+
+export const calculatePercentage = (
+  totalValue: number,
+  partialValue: number = 10
+) => {
+  return (partialValue / 100) * totalValue;
+};
