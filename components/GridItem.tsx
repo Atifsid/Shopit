@@ -13,7 +13,7 @@ const GridItem = (props: Product) => {
 
   function handleAddItemToCart() {
     dispatch(addProductToCart({ ...props }));
-    toast.success("Item added to cart.");
+    toast.success("Item added to cart.", { duration: 800 });
   }
 
   return (

@@ -28,7 +28,7 @@ const Cart = () => {
           </div>
           <div className="center">
             <span className="text-base">{`Discount 10% :`}</span>
-            <span className="text-lg font-bold text-red-500">{`- $ ${
+            <span className="text-lg font-semibold text-red-500">{`- $ ${
               cartState.totalPrice > 0
                 ? roundOffToDecimalPlaces(
                     calculatePercentage(cartState.totalPrice)
@@ -39,7 +39,7 @@ const Cart = () => {
           <Divider />
           <div className="center">
             <span className="text-base font-bold">{`Total :`}</span>
-            <span className="text-lg font-bold">{`$ ${roundOffToDecimalPlaces(
+            <span className="text-xl font-bold">{`$ ${roundOffToDecimalPlaces(
               cartState.totalPrice -
                 roundOffToDecimalPlaces(
                   calculatePercentage(cartState.totalPrice)
