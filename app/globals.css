@@ -17,3 +17,7 @@ html {
     @apply flex justify-between;
   }
 }
+
+.common-width {
+  width: 80vw;
+}

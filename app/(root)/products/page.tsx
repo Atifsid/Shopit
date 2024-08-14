@@ -3,7 +3,7 @@ import React from "react";
 
 const Products = () => {
   return (
-    <section>
+    <section className="flex justify-center">
       <Grid />
     </section>
   );
