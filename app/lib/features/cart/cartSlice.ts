@@ -1,16 +1,19 @@
 "use client";
 
 import { CartProduct } from "@/types";
+import { cartSubTotal } from "@/utils/functions";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface CartState {
   cartSize: number;
   cartItems: CartProduct[];
+  totalPrice: number;
 }
 
 const initialState: CartState = {
   cartSize: 0,
   cartItems: [],
+  totalPrice: 0,
 };
 
 export const counterSlice = createSlice({
@@ -39,6 +42,7 @@ export const counterSlice = createSlice({
       }
       // update cart size
       state.cartSize = state.cartItems.length;
+      state.totalPrice = cartSubTotal(state.cartItems);
     },
 
     // remove product from cart only if item is present in the cart.
@@ -52,6 +56,8 @@ export const counterSlice = createSlice({
 
       // update cart size
       state.cartSize = state.cartItems.length;
+      // update totalPrice
+      state.totalPrice = cartSubTotal(state.cartItems);
     },
 
     // decrement item quantity only if item is present in the cart.
@@ -78,6 +84,8 @@ export const counterSlice = createSlice({
 
       // update cart size
       state.cartSize = state.cartItems.length;
+      // update totalPrice
+      state.totalPrice = cartSubTotal(state.cartItems);
     },
   },
 });
