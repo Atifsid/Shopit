@@ -21,7 +21,7 @@ const Header = () => {
         <FaShoppingCart className="text-white text-2xl" />
         {count > 0 && (
           <span className="absolute inset-0 object-right-top -mr-6">
-            <div className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-semibold bg-red-500 text-white">
+            <div className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-black">
               {count}
             </div>
           </span>

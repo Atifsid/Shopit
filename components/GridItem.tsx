@@ -6,9 +6,15 @@ import { Product } from "@/types";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "@/app/lib/features/cart/cartSlice";
+import toast from "react-hot-toast";
 
 const GridItem = (props: Product) => {
   const dispatch = useDispatch();
+
+  function handleAddItemToCart() {
+    dispatch(addProductToCart({ ...props }));
+    toast.success("Item added to cart.");
+  }
 
   return (
     <div className="m-5 card max-w-sm">
@@ -22,7 +28,7 @@ const GridItem = (props: Product) => {
           className="aspect-square w-full p-5"
         />
         <button
-          onClick={() => dispatch(addProductToCart({ ...props }))}
+          onClick={handleAddItemToCart}
           className="bg-primary p-2 rounded-full absolute top-3 right-3"
         >
           <FaCartPlus className="text-lg text-white" />
