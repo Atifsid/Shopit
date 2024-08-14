@@ -1,14 +1,15 @@
 "use client";
 
 import { RootState } from "@/app/lib/store";
+import BlurryDivider from "@/components/BlurryDivider";
 import CartItem from "@/components/CartItem";
-import Divider from "@/components/Divider";
 import EmptyCart from "@/components/EmptyCart";
+import { Loader } from "@/components/Loader";
 import {
   calculatePercentage,
   roundOffToDecimalPlaces,
 } from "@/utils/functions";
-import React from "react";
+import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
@@ -36,10 +37,10 @@ const Cart = () => {
                 : "0"
             }`}</span>
           </div>
-          <Divider />
+          <BlurryDivider />
           <div className="center">
             <span className="text-base font-bold">{`Total :`}</span>
-            <span className="text-xl font-bold">{`$ ${roundOffToDecimalPlaces(
+            <span className="text- font-bold">{`$ ${roundOffToDecimalPlaces(
               cartState.totalPrice -
                 roundOffToDecimalPlaces(
                   calculatePercentage(cartState.totalPrice)
@@ -47,13 +48,15 @@ const Cart = () => {
             )}`}</span>
           </div>
         </div>
-        {cartState.cartItems.length == 0 && <EmptyCart />}
-        {cartState.cartItems.length > 0 &&
-          cartState.cartItems.map((cartItem) => (
-            <React.Fragment key={cartItem.id}>
-              <CartItem {...cartItem} />
-            </React.Fragment>
-          ))}
+        <Suspense fallback={<Loader />}>
+          {cartState.cartItems.length == 0 && <EmptyCart />}
+          {cartState.cartItems.length > 0 &&
+            cartState.cartItems.map((cartItem) => (
+              <React.Fragment key={cartItem.id}>
+                <CartItem {...cartItem} />
+              </React.Fragment>
+            ))}
+        </Suspense>
       </div>
     </section>
   );

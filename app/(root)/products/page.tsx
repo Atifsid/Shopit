@@ -1,10 +1,13 @@
 import Grid from "@/components/Grid";
-import React from "react";
+import { Loader } from "@/components/Loader";
+import React, { Suspense } from "react";
 
 const Products = () => {
   return (
     <section className="flex justify-center">
-      <Grid />
+      <Suspense fallback={<Loader />}>
+        <Grid />
+      </Suspense>
     </section>
   );
 };

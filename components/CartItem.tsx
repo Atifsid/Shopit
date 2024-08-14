@@ -8,8 +8,8 @@ import {
   decreaseQuantity,
   addProductToCart,
 } from "@/app/lib/features/cart/cartSlice";
-import Divider from "./Divider";
 import { roundOffToDecimalPlaces } from "@/utils/functions";
+import BlurryDivider from "./BlurryDivider";
 
 const CartItem = (props: CartProduct) => {
   const dispatch = useDispatch();
@@ -20,12 +20,12 @@ const CartItem = (props: CartProduct) => {
         <Image
           src={props.image!}
           alt={props.title!}
-          height={80}
-          width={80}
+          height={120}
+          width={130}
           objectFit="cover"
           className="aspect-square"
         />
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-[10px]">
           <p className="text-base font-semibold text-end">{props.title}</p>
           <p className="text-base text-end">{`${
             props.quantity! > 1 ? `${props.quantity} x` : ""
@@ -53,7 +53,7 @@ const CartItem = (props: CartProduct) => {
               className="text-red-600 text-lg text-end cursor-pointer"
             />
           </div>
-          <Divider />
+          <BlurryDivider />
           <p className="text-base text-end">{`$ ${roundOffToDecimalPlaces(
             props.quantity! * props.price!
           )}`}</p>
