@@ -8,7 +8,7 @@ const Header = () => {
   const count = useSelector((state: RootState) => state.cart.cartSize);
 
   return (
-    <header className="flex flex-row items-center justify-between sm:justify-around py-1 bg-primary px-10">
+    <header className="flex flex-row items-center justify-between sm:justify-around py-1 bg-primary px-10 sticky top-0 z-50">
       <Link href={"/"} className="cursor-pointer">
         <h3 className="text-white font-mono font-bold text-xl">SHOPiT</h3>
         <h6 className="text-xs italic text-white">Buy anything</h6>
