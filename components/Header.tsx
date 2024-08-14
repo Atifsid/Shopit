@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="flex flex-row items-center justify-between sm:justify-around py-1 bg-primary px-10">
       <Link href={"/"} className="cursor-pointer">
-        <h3 className="text-white font-mono font-bold text-xl italic">
+        <h3 className="text-white font-mono font-bold text-xl">
           SHOPiT
         </h3>
         <h6 className="text-xs italic text-white">Buy anything</h6>
