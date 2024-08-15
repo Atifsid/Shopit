@@ -48,6 +48,7 @@ const Coupon = () => {
               </button>
               <TootipElement
                 tooltipText={"Use coupon FREE10 to get 10% discount"}
+                className="w-[50%]"
               >
                 <FaCircleInfo className="text-lg text-primary" />
               </TootipElement>
