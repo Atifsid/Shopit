@@ -54,21 +54,29 @@ const Coupon = () => {
             </div>
           )}
           {applyCoupon && (
-            <form className="flex items-center gap-4" onSubmit={handleApply}>
-              <Input
-                label={"Enter coupon"}
-                type={"text"}
-                value={coupon}
-                setValue={setCoupon}
-                errorText="Invalid coupon, Please try FREE10."
-                errorTextVisible={errorVisible}
-              />
-              <button
-                type="submit"
-                className="px-4 py-1 text-white bg-primary rounded-sm"
-              >
-                Apply
-              </button>
+            <form onSubmit={handleApply}>
+              <div className="flex items-center gap-4">
+                <Input
+                  label={"Enter coupon"}
+                  type={"text"}
+                  value={coupon}
+                  setValue={setCoupon}
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-1 text-white bg-primary rounded-sm"
+                >
+                  Apply
+                </button>
+              </div>
+              {errorVisible && (
+                <div
+                  className="px-3 w-full text-sm text-error"
+                  data-twe-input-helper-ref
+                >
+                  Invalid coupon, Please try FREE10.
+                </div>
+              )}
             </form>
           )}
         </React.Fragment>

@@ -20,7 +20,11 @@ const Input = ({
   id?: any;
 }) => {
   return (
-    <div className={`bg-white px-3 pt-3 ${errorTextVisible ? "pb-6" : "pb-3"}`}>
+    <div
+      className={`bg-white px-3 pt-3 ${
+        errorTextVisible ? "pb-6 max-sm:pb-11" : "pb-3"
+      }`}
+    >
       <div className="relative bg-inherit">
         <input
           type={type}
