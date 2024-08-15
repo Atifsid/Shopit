@@ -18,5 +18,12 @@ export interface CartProduct {
   title?: string;
   price?: number;
   image?: string;
-  quantity?: number
+  quantity?: number;
+}
+
+export interface CartState {
+  cartSize: number;
+  cartItems: CartProduct[];
+  totalPrice: number;
+  couponApplied: boolean;
 }

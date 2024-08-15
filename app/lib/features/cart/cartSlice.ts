@@ -1,15 +1,8 @@
 "use client";
 
-import { CartProduct } from "@/types";
+import { CartState } from "@/types";
 import { cartSubTotal } from "@/utils/functions";
 import { createSlice } from "@reduxjs/toolkit";
-
-export interface CartState {
-  cartSize: number;
-  cartItems: CartProduct[];
-  totalPrice: number;
-  couponApplied: boolean;
-}
 
 const initialState: CartState = {
   cartSize: 0,
