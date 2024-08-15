@@ -7,6 +7,7 @@ import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "@/app/lib/features/cart/cartSlice";
 import toast from "react-hot-toast";
+import TootipElement from "./TootipElement";
 
 const GridItem = (props: Product) => {
   const dispatch = useDispatch();
@@ -35,12 +36,9 @@ const GridItem = (props: Product) => {
         </button>
       </div>
       <div className="px-5 py-2">
-        <div className="group relative">
+        <TootipElement tooltipText={props.title!}>
           <p className="text-gray-700 text-xs truncate">{props.title}</p>
-          <span className="absolute bottom-7 scale-0 rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100">
-            {props.title}
-          </span>
-        </div>
+        </TootipElement>
         <div className="font-bold text-base mb-2 truncate">{`$ ${props.price}`}</div>
       </div>
     </div>

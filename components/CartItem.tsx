@@ -25,7 +25,7 @@ const CartItem = (props: CartProduct) => {
           objectFit="cover"
           className="aspect-square"
         />
-        <div className="flex flex-col gap-[10px]">
+        <div className="flex flex-col gap-[5px]">
           <p className="text-base font-semibold text-end">{props.title}</p>
           <p className="text-base text-end">{`${
             props.quantity! > 1 ? `${props.quantity} x` : ""
@@ -50,11 +50,11 @@ const CartItem = (props: CartProduct) => {
             </div>
             <FaTrash
               onClick={() => dispatch(removeProductFromCart(props))}
-              className="text-red-600 text-lg text-end cursor-pointer"
+              className="text-error text-lg text-end cursor-pointer"
             />
           </div>
           <BlurryDivider />
-          <p className="text-base text-end">{`$ ${roundOffToDecimalPlaces(
+          <p className="text-base font-semibold text-end">{`$ ${roundOffToDecimalPlaces(
             props.quantity! * props.price!
           )}`}</p>
         </div>

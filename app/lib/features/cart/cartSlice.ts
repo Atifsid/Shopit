@@ -8,12 +8,14 @@ export interface CartState {
   cartSize: number;
   cartItems: CartProduct[];
   totalPrice: number;
+  couponApplied: boolean;
 }
 
 const initialState: CartState = {
   cartSize: 0,
   cartItems: [],
   totalPrice: 0,
+  couponApplied: false,
 };
 
 export const counterSlice = createSlice({
@@ -87,9 +89,17 @@ export const counterSlice = createSlice({
       // update totalPrice
       state.totalPrice = cartSubTotal(state.cartItems);
     },
+
+    setCouponApplied: (state, action) => {
+      state.couponApplied = action.payload;
+    },
   },
 });
 
-export const { addProductToCart, removeProductFromCart, decreaseQuantity } =
-  counterSlice.actions;
+export const {
+  addProductToCart,
+  removeProductFromCart,
+  decreaseQuantity,
+  setCouponApplied,
+} = counterSlice.actions;
 export default counterSlice.reducer;
