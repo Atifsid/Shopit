@@ -38,24 +38,20 @@ export const authSlice = createSlice({
             localStorage.setItem("userToken", response.data.token);
           } else {
             state.loading = false;
-            toast.error(response.message, { position: "top-center" });
+            toast.error(response.message);
             state.error = response.message;
           }
         } else {
           state.error = action.payload;
         }
       } else {
-        toast.error("Something went wrong, Please try again later", {
-          position: "top-center",
-        });
+        toast.error("Something went wrong, Please try again later");
       }
       state.loading = false;
     });
     builder.addCase(signupEvent.rejected, (state, { payload }: any) => {
       state.loading = false;
-      toast.error("Something went wrong, Please try again later", {
-        position: "top-center",
-      });
+      toast.error("Something went wrong, Please try again later");
       console.error("signupEvent.rejected", payload);
     });
 
@@ -74,24 +70,20 @@ export const authSlice = createSlice({
             localStorage.setItem("userToken", response.data.token);
           } else {
             state.loading = false;
-            toast.error(response.message, { position: "top-center" });
+            toast.error(response.message);
             state.error = response.message;
           }
         } else {
           state.error = action.payload;
         }
       } else {
-        toast.error("Something went wrong, Please try again later", {
-          position: "top-center",
-        });
+        toast.error("Something went wrong, Please try again later");
       }
       state.loading = false;
     });
     builder.addCase(loginEvent.rejected, (state, { payload }: any) => {
       state.loading = false;
-      toast.error("Something went wrong, Please try again later", {
-        position: "top-center",
-      });
+      toast.error("Something went wrong, Please try again later");
       console.error("loginEvent.rejected", payload);
     });
   },
