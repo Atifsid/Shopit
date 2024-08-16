@@ -14,11 +14,15 @@ html {
 
 @layer utilities {
   .card {
-    @apply rounded-md overflow-hidden shadow-lg bg-white
+    @apply rounded-md overflow-hidden shadow-lg bg-white;
   }
 
   .center {
-    @apply flex justify-between items-center
+    @apply flex justify-between items-center;
+  }
+
+  .centered-div {
+    @apply flex justify-center flex-col m-auto h-screen;
   }
 }
 

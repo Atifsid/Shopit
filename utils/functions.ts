@@ -21,3 +21,29 @@ export const calculatePercentage = (
 ) => {
   return (partialValue / 100) * totalValue;
 };
+
+export const simpleTokenValidator = (token: string | null) => {
+  return (
+    token != undefined &&
+    token != null &&
+    token.trim() != "" &&
+    token.startsWith("Bearer")
+  );
+};
+
+export const isBrowser = (): boolean => {
+  return typeof window !== "undefined";
+};
+
+export const setToken = (token: string) => {
+  if (isBrowser()) {
+    localStorage.setItem("userToken", token);
+  }
+};
+
+export const getToken = () => {
+  if (isBrowser()) {
+    return localStorage.getItem("userToken");
+  }
+  return null;
+};

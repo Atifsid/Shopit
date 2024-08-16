@@ -1,18 +1,27 @@
+"use client";
 import Header from "@/components/Header";
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import { useSelector } from "react-redux";
+import { RootState } from "../lib/store";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.replace("/login");
+    }
+  }, [isLoggedIn]);
   return (
-    <html lang="en">
-      <body className={inter.className} suppressHydrationWarning>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <div>
+      <Header />
+      {children}
+    </div>
   );
 }

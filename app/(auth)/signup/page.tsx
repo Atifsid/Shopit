@@ -1,12 +1,18 @@
 "use client";
 
+import { signupEvent } from "@/app/lib/features/auth/authActions";
+import { RootState } from "@/app/lib/store";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Spinner from "@/components/Spinner";
 import { validateSignup } from "@/utils/validate";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ZodIssue } from "zod";
 
 const Signup = () => {
+  const router = useRouter();
   const [formState, setFormState] = useState({
     email: "",
     password: "",
@@ -17,6 +23,9 @@ const Signup = () => {
     passwordError: "",
     confirmPasswordError: "",
   });
+
+  const authState = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<any>();
 
   const assignError = (issues: ZodIssue[]) => {
     const err = {
@@ -51,11 +60,21 @@ const Signup = () => {
 
     if (!validated.success) {
       assignError(validated.error.issues);
+    } else {
+      dispatch(
+        signupEvent({ email: formState.email, password: formState.password })
+      );
     }
   };
 
+  useEffect(() => {
+    if (authState.isLoggedIn) {
+      router.push("/products");
+    }
+  }, [authState]);
+
   return (
-    <div className="flex justify-center flex-col m-auto h-screen">
+    <div className="centered-div">
       <form
         onSubmit={onSubmit}
         className="flex flex-col min-w-[20%] max-lg:w-[38%] max-md:w-[80%] gap-3 card mx-auto p-6"
@@ -118,7 +137,11 @@ const Signup = () => {
         />
 
         <Button type={"submit"}>
-          <span className="text-white text-center">Submit</span>
+          {authState.loading ? (
+            <Spinner />
+          ) : (
+            <span className="text-white text-center">Submit</span>
+          )}
         </Button>
       </form>
     </div>

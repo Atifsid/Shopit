@@ -27,3 +27,28 @@ export interface CartState {
   totalPrice: number;
   couponApplied: boolean;
 }
+
+export interface AuthState {
+  isLoggedIn: boolean;
+  loading: boolean;
+  error: string | null;
+  token: string | null;
+}
+
+export interface AuthRequest {
+  email: string;
+  password: string;
+}
+
+export interface BaseResponse<T> {
+  code: number;
+  status: string;
+  message: string;
+  data: T;
+}
+
+export interface AuthResponse {
+  id: number;
+  email: string;
+  token: string;
+}
