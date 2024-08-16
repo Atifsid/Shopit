@@ -62,6 +62,7 @@ const Coupon = () => {
                   type={"text"}
                   value={coupon}
                   setValue={setCoupon}
+                  containerClassName={"px-3"}
                 />
                 <button
                   type="submit"
