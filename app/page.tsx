@@ -1,16 +1,10 @@
-import Login from "./(auth)/login/page";
-import Products from "./(root)/products/page";
+"use client";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  //TODO: create slice for this
-  const isLoggedIn = true;
-  if (isLoggedIn) {
-    return (
-      <main>
-        <Products />
-      </main>
-    );
-  } else {
-    return <Login />;
-  }
+  const router = useRouter();
+  const isLoggedIn = false;
+  isLoggedIn ? router.push("/products") : router.push("/login");
+
+  return null;
 }
