@@ -3,7 +3,7 @@
 import { AuthResponse, AuthState, BaseResponse } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { loginEvent, signupEvent } from "./authActions";
-import { getToken, simpleTokenValidator } from "@/utils/functions";
+import { getToken, removeToken, simpleTokenValidator } from "@/utils/functions";
 import toast from "react-hot-toast";
 
 const initialState: AuthState = {
@@ -17,9 +17,10 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout: (state, action) => {
+    logout: (state) => {
       state.isLoggedIn = false;
       state.token = null;
+      removeToken();
     },
   },
   extraReducers: (builder) => {
@@ -89,4 +90,5 @@ export const authSlice = createSlice({
   },
 });
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

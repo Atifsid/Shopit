@@ -31,9 +31,6 @@ export const loginEvent = createAsyncThunk(
           "Content-Type": "application/json",
         },
       };
-      console.log(
-        `${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_SERVER_PORT}`
-      );
       return await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}:${process.env.NEXT_PUBLIC_SERVER_PORT}/auth/login`,
         { email, password },

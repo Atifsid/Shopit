@@ -41,6 +41,12 @@ export const setToken = (token: string) => {
   }
 };
 
+export const removeToken = () => {
+  if (isBrowser()) {
+    localStorage.removeItem("userToken");
+  }
+};
+
 export const getToken = () => {
   if (isBrowser()) {
     return localStorage.getItem("userToken");
