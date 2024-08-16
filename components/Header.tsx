@@ -5,6 +5,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { BiSolidExit } from "react-icons/bi";
 import { logout } from "@/app/lib/features/auth/authSlice";
+import { ROUTES } from "@/constants/routes";
 
 const Header = () => {
   const count = useSelector((state: RootState) => state.cart.cartSize);
@@ -18,7 +19,7 @@ const Header = () => {
       </Link>
       <div className="flex items-center gap-3">
         <Link
-          href={"/cart"}
+          href={ROUTES.cart}
           className="py-3 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
           aria-label="Cart"
         >
@@ -31,7 +32,7 @@ const Header = () => {
             </span>
           )}
         </Link>
-        <Link href={"/login"}>
+        <Link href={ROUTES.login}>
           <BiSolidExit
             onClick={() => dispatch(logout())}
             className="text-white text-2xl"

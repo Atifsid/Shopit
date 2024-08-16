@@ -1,6 +1,5 @@
 "use client";
 
-import { loginEvent } from "@/app/lib/features/auth/authActions";
 import { RootState } from "@/app/lib/store";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -10,6 +9,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ZodIssue } from "zod";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ROUTES } from "@/constants/routes";
+import { loginEvent } from "@/api/service/authActions";
 
 const Login = () => {
   const router = useRouter();
@@ -62,13 +64,13 @@ const Login = () => {
 
   useEffect(() => {
     if (authState.isLoggedIn) {
-      router.push("/products");
+      router.push(ROUTES.products);
     }
   }, [authState]);
 
   return (
     <div className="centered-div">
-      <div className="flex flex-col min-w-[20%] max-lg:w-[38%] max-md:w-[80%] gap-3 card mx-auto p-6">
+      <div className="flex flex-col min-w-[20%] max-lg:w-[38%] max-md:w-[80%] gap-5 card mx-auto px-6 pb-4 pt-5">
         <h1 className="font-bold text-2xl">Login</h1>
         <Input
           value={formState.email}
@@ -114,6 +116,16 @@ const Login = () => {
             <span className="text-white text-center">Submit</span>
           )}
         </Button>
+
+        <h6 className="font-semibold text-center text-sm cursor-default">
+          New user?{" "}
+          <Link
+            href={ROUTES.signup}
+            className="text-primary mx-2 underline underline-offset-2 cursor-pointer"
+          >
+            Signup
+          </Link>
+        </h6>
       </div>
     </div>
   );

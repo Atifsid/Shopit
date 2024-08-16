@@ -2,9 +2,9 @@
 
 import { AuthResponse, AuthState, BaseResponse } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { loginEvent, signupEvent } from "./authActions";
 import { getToken, removeToken, simpleTokenValidator } from "@/utils/functions";
 import toast from "react-hot-toast";
+import { loginEvent, signupEvent } from "@/api/service/authActions";
 
 const initialState: AuthState = {
   isLoggedIn: simpleTokenValidator(getToken()),

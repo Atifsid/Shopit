@@ -1,11 +1,13 @@
 "use client";
 
-import { signupEvent } from "@/app/lib/features/auth/authActions";
+import { signupEvent } from "@/api/service/authActions";
 import { RootState } from "@/app/lib/store";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Spinner from "@/components/Spinner";
+import { ROUTES } from "@/constants/routes";
 import { validateSignup } from "@/utils/validate";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,7 +71,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (authState.isLoggedIn) {
-      router.push("/products");
+      router.push(ROUTES.products);
     }
   }, [authState]);
 
@@ -77,7 +79,7 @@ const Signup = () => {
     <div className="centered-div">
       <form
         onSubmit={onSubmit}
-        className="flex flex-col min-w-[20%] max-lg:w-[38%] max-md:w-[80%] gap-3 card mx-auto p-6"
+        className="flex flex-col min-w-[20%] max-lg:w-[38%] max-md:w-[80%] gap-3 card mx-auto px-6 pt-5 pb-5"
       >
         <h1 className="font-bold text-2xl">Signup</h1>
         <Input
@@ -143,6 +145,16 @@ const Signup = () => {
             <span className="text-white text-center">Submit</span>
           )}
         </Button>
+
+        <h6 className="font-semibold text-center mt-3 text-sm cursor-default">
+          Already have an account?{" "}
+          <Link
+            href={ROUTES.login}
+            className=" text-primary mx-2 underline underline-offset-2 cursor-pointer"
+          >
+            Login
+          </Link>
+        </h6>
       </form>
     </div>
   );

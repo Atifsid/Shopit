@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../lib/store";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ROUTES } from "@/constants/routes";
 
 export default function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default function RootLayout({
 
   useEffect(() => {
     if (!isLoggedIn) {
-      router.replace("/login");
+      router.replace(ROUTES.login);
     }
   }, [isLoggedIn]);
   return (
