@@ -24,6 +24,10 @@ html {
   .centered-div {
     @apply flex justify-center flex-col m-auto h-screen;
   }
+
+  .height-without-header {
+    height: calc(100vh - 60px);
+  }
 }
 
 .common-width {
