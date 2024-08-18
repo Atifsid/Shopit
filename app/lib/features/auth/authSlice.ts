@@ -2,12 +2,12 @@
 
 import { AuthResponse, AuthState, BaseResponse } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { getToken, removeToken, simpleTokenValidator } from "@/utils/functions";
+import { getToken, removeToken, isTokenValid } from "@/utils/functions";
 import toast from "react-hot-toast";
 import { loginEvent, signupEvent } from "@/api/service/authActions";
 
 const initialState: AuthState = {
-  isLoggedIn: simpleTokenValidator(getToken()),
+  isLoggedIn: null,
   loading: false,
   error: null,
   token: getToken(),
@@ -21,6 +21,16 @@ export const authSlice = createSlice({
       state.isLoggedIn = false;
       state.token = null;
       removeToken();
+    },
+    loadUser: (state, action) => {
+      state.loading = true;
+      state.token = action.payload;
+      if (isTokenValid(action.payload)) {
+        state.isLoggedIn = true;
+      } else {
+        state.isLoggedIn = false;
+      }
+      state.loading = false;
     },
   },
   extraReducers: (builder) => {
@@ -90,5 +100,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, loadUser } = authSlice.actions;
 export default authSlice.reducer;

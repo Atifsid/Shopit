@@ -22,7 +22,7 @@ export const calculatePercentage = (
   return (partialValue / 100) * totalValue;
 };
 
-export const simpleTokenValidator = (token: string | null) => {
+export const isTokenValid = (token: string | null) => {
   return (
     token != undefined &&
     token != null &&

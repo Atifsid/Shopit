@@ -5,15 +5,15 @@ import Image from "next/image";
 import { Product } from "@/types";
 import { FaCartPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "@/app/lib/features/cart/cartSlice";
 import toast from "react-hot-toast";
 import TootipElement from "./TootipElement";
+import { addItemToCart } from "@/api/service/cartActions";
 
 const GridItem = (props: Product) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   function handleAddItemToCart() {
-    dispatch(addProductToCart({ ...props }));
+    dispatch(addItemToCart(props.id!));
     toast.success("Item added to cart.");
   }
 

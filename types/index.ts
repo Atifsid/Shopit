@@ -18,10 +18,12 @@ export interface CartState {
   cartItems: CartProduct[];
   totalPrice: number;
   couponApplied: boolean;
+  loading: boolean;
+  error: string | null;
 }
 
 export interface AuthState {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean | null;
   loading: boolean;
   error: string | null;
   token: string | null;

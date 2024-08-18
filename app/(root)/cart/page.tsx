@@ -1,5 +1,6 @@
 "use client";
 
+import { getCartItems } from "@/api/service/cartActions";
 import { RootState } from "@/app/lib/store";
 import BlurryDivider from "@/components/BlurryDivider";
 import CartItem from "@/components/CartItem";
@@ -10,11 +11,16 @@ import {
   calculatePercentage,
   roundOffToDecimalPlaces,
 } from "@/utils/functions";
-import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
+import React, { Suspense, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const Cart = () => {
   const cartState = useSelector((state: RootState) => state.cart);
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
 
   const getTotalPrice = () => {
     if (cartState.couponApplied) {

@@ -6,10 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiSolidExit } from "react-icons/bi";
 import { logout } from "@/app/lib/features/auth/authSlice";
 import { ROUTES } from "@/constants/routes";
+import { useEffect } from "react";
+import { getCartSize } from "@/api/service/cartActions";
 
 const Header = () => {
   const count = useSelector((state: RootState) => state.cart.cartSize);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    dispatch(getCartSize());
+  }, []);
 
   return (
     <header className="flex flex-row items-center justify-between sm:justify-around py-1 bg-primary px-10 sticky top-0 z-50">
@@ -17,7 +23,7 @@ const Header = () => {
         <h3 className="text-white font-mono font-bold text-xl">SHOPiT</h3>
         <h6 className="text-xs italic text-white">Buy anything</h6>
       </Link>
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-5">
         <Link
           href={ROUTES.cart}
           className="py-3 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"

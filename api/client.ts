@@ -1,10 +1,20 @@
 "use client";
 
 import { store } from "@/app/lib/store";
+import { ROUTES } from "@/constants/routes";
 import axios, { AxiosResponse } from "axios";
 
 const responseInterceptor = (response: AxiosResponse<unknown, unknown>) => {
   return response;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const errorHandler = (error: any) => {
+  if (error.response.status === 401 || error.response.status === 403) {
+    window.location.replace(ROUTES.login);
+  }
+
+  return Promise.reject(error);
 };
 
 export const client = axios.create({
@@ -25,4 +35,4 @@ export const getAuthorizedClient = () => {
   return client;
 };
 
-client.interceptors.response.use(responseInterceptor);
+client.interceptors.response.use(responseInterceptor, errorHandler);

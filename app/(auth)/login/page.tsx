@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
 import { loginEvent } from "@/api/service/authActions";
+import { getToken, isTokenValid } from "@/utils/functions";
 
 const Login = () => {
   const router = useRouter();
@@ -56,6 +57,7 @@ const Login = () => {
     if (!validated.success) {
       assignError(validated.error.issues);
     } else {
+      assignError([]);
       dispatch(
         loginEvent({ email: formState.email, password: formState.password })
       );
@@ -66,7 +68,7 @@ const Login = () => {
     if (authState.isLoggedIn) {
       router.push(ROUTES.products);
     }
-  }, [authState]);
+  }, [authState.isLoggedIn]);
 
   return (
     <div className="centered-div">

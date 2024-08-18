@@ -63,6 +63,7 @@ const Signup = () => {
     if (!validated.success) {
       assignError(validated.error.issues);
     } else {
+      assignError([]);
       dispatch(
         signupEvent({ email: formState.email, password: formState.password })
       );

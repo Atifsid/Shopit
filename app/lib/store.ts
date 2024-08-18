@@ -9,6 +9,7 @@ export const store = configureStore({
     cart: cartReducer,
     auth: authReducer,
   },
+  devTools: false,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

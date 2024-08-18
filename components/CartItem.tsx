@@ -3,16 +3,16 @@ import Image from "next/image";
 import { FaPlus, FaMinus, FaTrash } from "react-icons/fa6";
 import { CartProduct } from "@/types";
 import { useDispatch } from "react-redux";
-import {
-  removeProductFromCart,
-  decreaseQuantity,
-  addProductToCart,
-} from "@/app/lib/features/cart/cartSlice";
 import { roundOffToDecimalPlaces } from "@/utils/functions";
 import BlurryDivider from "./BlurryDivider";
+import {
+  addItemToCart,
+  decreaseItemQuantityInCart,
+  deleteItemFromCart,
+} from "@/api/service/cartActions";
 
 const CartItem = (props: CartProduct) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   return (
     <div className="card mx-5 my-3 px-6 py-4">
@@ -33,7 +33,7 @@ const CartItem = (props: CartProduct) => {
           <div className="flex items-center justify-end gap-5 mt-2">
             <div className="flex items-center gap-5 bg-gray-200 shadow-sm rounded-md">
               <button
-                onClick={() => dispatch(addProductToCart(props))}
+                onClick={() => dispatch(addItemToCart(props.id!))}
                 className="bg-gray-300 p-1 rounded-tl-md rounded-bl-md"
               >
                 <FaPlus className="text-gray-700" />
@@ -42,14 +42,14 @@ const CartItem = (props: CartProduct) => {
                 {props.quantity}
               </span>
               <button
-                onClick={() => dispatch(decreaseQuantity(props))}
+                onClick={() => dispatch(decreaseItemQuantityInCart(props.id!))}
                 className="bg-gray-300 p-1 rounded-tr-md rounded-br-md"
               >
                 <FaMinus className="text-gray-700" />
               </button>
             </div>
             <FaTrash
-              onClick={() => dispatch(removeProductFromCart(props))}
+              onClick={() => dispatch(deleteItemFromCart(props.id!))}
               className="text-error text-lg text-end cursor-pointer"
             />
           </div>
